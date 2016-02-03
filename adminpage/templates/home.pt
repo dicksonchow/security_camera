@@ -1,0 +1,10 @@
+<html metal:use-macro="load: layout/meta.pt">
+<div metal:fill-slot="content">
+    <div class="container">
+        <div class="top">
+            <h1 id="title">Welcome Home! Admin</h1>
+        </div>
+        <img src="${request.static_url('adminpage:static/camera.png')}">
+    </div>
+</div>
+</html>

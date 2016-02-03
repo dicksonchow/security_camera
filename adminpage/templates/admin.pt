@@ -1,0 +1,37 @@
+<html metal:use-macro="load: layout/meta.pt">
+<div metal:fill-slot="content">
+    <div class="container">
+        <div class="top">
+            <h1 id="title">User Information</h1>
+        </div>
+        <br>
+        <p id="reminder" class="alert alert-success"><strong>Info!</strong> &nbsp;&nbsp;Now we have
+            <strong>${len(user_list)}</strong>
+            registered users.
+        </p>
+        <form method="post" action="/statusupdate">
+            <table class="table table-hover">
+                <thead>
+                <tr class="warning">
+                    <th>User ID</th>
+                    <th>User Name</th>
+                    <th>Allow Access?</th>
+                    <th>Update Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr tal:repeat="item user_list" class="warning">
+                    <td>${item['id'] - 40}</td>
+                    <td>${item['name']}</td>
+                    <td tal:condition="item['register']"><span class="glyphicon glyphicon-ok"></span></td>
+                    <td tal:condition="not item['register']"><span class="glyphicon glyphicon-remove"></span></td>
+                    <td><input name="status_up" type="checkbox" value="${item['id']}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-lg btn-danger" type="submit">Submit Changes</button>
+        </form>
+        <br>
+    </div>
+</div>
+</html>

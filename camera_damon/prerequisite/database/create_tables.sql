@@ -1,0 +1,14 @@
+CREATE TABLE secamuser_tb(
+	id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(40) NOT NULL,
+	register BOOLEAN NOT NULL,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE secamdata_tb(
+	id INT NOT NULL AUTO_INCREMENT,
+	user_id INT NOT NULL,
+	pic_path VARCHAR(100) NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY(user_id) REFERENCES secamuser_tb(id)
+);

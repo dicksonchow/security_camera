@@ -1,0 +1,87 @@
+<html metal:use-macro="load: layout/meta.pt">
+<div metal:fill-slot="head">
+    <!-- Style sheet to control the pop up form -->
+    <link rel="stylesheet" href="${request.static_url('adminpage:static/form.css')}">
+</div>
+
+<div metal:fill-slot="content">
+    <div class="container">
+        <div class="top">
+            <h1 id="title">Smile to the Camera!!</h1>
+        </div>
+        <br>
+
+        <p id="reminder" class="alert alert-success"><strong>Info!</strong> &nbsp;&nbsp;You still got <span id="pic_left">20</span>
+            to
+            go</p>
+        <div id="taking_picture" class="row animated fadeInUp">
+            <video autoplay='true' id="video_frame" class="col-md-7"></video>
+            <button id="snapshot" class="col-sm-2 btn btn-danger btn-lg">
+                <span class="glyphicon glyphicon-camera"></span>
+                Take Snapshot
+            </button>
+        </div>
+
+        <div id="to_confirm" class="row" style="display: none">
+            <canvas id="picframe" class="col-md-7"></canvas>
+            <button id="save" class="col-sm-2 btn btn-success btn-lg">
+                <span class="glyphicon glyphicon-floppy-saved"></span>
+                Save
+            </button>
+
+            <button id="discard" class="col-sm-2 btn btn-warning btn-lg">
+                <span class="glyphicon glyphicon-trash"></span>
+                Discard
+            </button>
+        </div>
+
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" align="center">
+                        <img class="img-circle" id="img_logo" src="http://bootsnipp.com/img/logo.jpg">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+
+                    <!-- Begin # DIV Form -->
+                    <div id="div-forms">
+
+                        <!-- Begin # Login Form -->
+                        <form id="login-form" onsubmit="upload_to_server()">
+                            <div class="modal-body">
+                                <div id="div-login-msg">
+                                    <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                    <span id="text-login-msg">Type the user information</span>
+                                </div>
+                                <input id="login_username" class="form-control" type="text" required>
+                                <div class="checkbox">
+                                    <label>
+                                        Allow access
+                                        <input type="checkbox">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Confirm</button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- End # Login Form -->
+
+                    </div>
+                    <!-- End # DIV Form -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript file that handles picture taking -->
+    <script src="${request.static_url('adminpage:static/turnoncam.js')}"></script>
+    <script src="${request.static_url('adminpage:static/takingpictures.js')}"></script>
+</div>
+</html>

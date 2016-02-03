@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>${page_title}</title>
+    <div metal:define-slot="head"></div>
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900'
+          rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="${request.static_url('adminpage:static/animate.css')}">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="${request.static_url('adminpage:static/style.css')}">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Style sheet to control the pop up form -->
+    <link rel="stylesheet" href="${request.static_url('adminpage:static/form.css')}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/home">Security Camera Admin Page</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+            <li tal:condition="'home' in request.url" tal:attributes="class 'active'"><a href="/home">Home</a></li>
+            <li tal:condition="'home' not in request.url"><a href="/home">Home</a></li>
+            <li tal:condition="'reg' in request.url" tal:attributes="class 'active'"><a href="/reg">New User</a></li>
+            <li tal:condition="'reg' not in request.url"><a href="/reg">New User</a></li>
+            <li tal:condition="'admin' in request.url" tal:attributes="class 'active'"><a
+                    href="/admin">Administration</a></li>
+            <li tal:condition="'admin' not in request.url"><a href="/admin">Administration</a></li>
+            <li><a href="/home">View Log</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div metal:define-slot="content"></div>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+</body>
+</html>
