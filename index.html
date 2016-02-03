@@ -31,7 +31,28 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <p>adminpage README</p>
+        <p>This project is about to use a Raspberry Pi to create a face recognition unlock App.
+The project consists of 2 parts</p>
+
+<p>The first part is a face recognition program to unlock the door
+we have implemented:</p>
+
+<ul>
+<li>  OpenCV to do the real face recognition, a predicted value and confidence value will be returned.</li>
+<li>  wiringPi.h(<a href="http://wiringpi.com/">http://wiringpi.com/</a>) to control breadboard.</li>
+<li>  mysql++ to connect to MySQL database
+The program also combined with signal handling.</li>
+</ul>
+
+<p>The second part is an admin page for administrators to control the App.
+we use Pyramid web framework to build the application.
+it involves:</p>
+
+<ul>
+<li>  JavaScript accesses webcam to take picture of a registered user.</li>
+<li>  Server-sided OpenCV to detect faces and crop to appropriate size</li>
+<li>  MySQLdb to connect to database to update and get data.</li>
+</ul>
       </section>
     </div>
 
