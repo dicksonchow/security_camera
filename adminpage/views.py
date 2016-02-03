@@ -105,6 +105,12 @@ def handle_upload_pictures(request):
 
     time.sleep(1)
     num_of_users = len([d for d in os.listdir('/usr/share/faces_db/') if os.path.isdir(os.path.join(facedb, d))])
+    new_path = facedb + 's' + str(num_of_users + 1)
+
+    if not os.path.exists(new_path):
+        os.makedirs(new_path)
+    else:
+        raise HTTPForbidden()
 
     for f in file_list:
         temp_file = meta + 'temp_pictures/' + f
@@ -121,10 +127,12 @@ def handle_upload_pictures(request):
         for fa in faces:
             x, y, w, h = [v for v in fa]
             count += 1
-            face_file_name = '/home/dickson/PycharmProjects/adminpage/faces/s' + str(count) + '.pgm'
+            face_file_name = '/home/dickson/PycharmProjects/adminpage/faces/' + str(count) + '.pgm'
             cv2.rectangle(img, (x, y), (x + w, y + h), (255, 255, 255))
             sub_face = cv2.resize(img[y:y + h, x:x + w], (92, 112), fx=1.0, fy=1.0, interpolation=cv2.INTER_CUBIC)
             cv2.imwrite(face_file_name, cv2.cvtColor(sub_face, cv2.COLOR_BGR2GRAY))
+
+        os.remove(temp_file)
 
     return Response('Hello World')
 
